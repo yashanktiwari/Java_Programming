@@ -24,3 +24,5 @@ public class ArraySearch {
             System.out.println(-1);
     }
 }
+
+
