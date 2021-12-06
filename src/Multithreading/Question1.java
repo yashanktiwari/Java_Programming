@@ -1,4 +1,7 @@
 package Multithreading;
+/*
+Create two threads and assign names ‘Scooby’ and ‘Shaggy’ to the two threads. Display both thread names.
+*/
 
 class Mythread1 extends Thread{
     public void run()
