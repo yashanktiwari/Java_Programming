@@ -26,10 +26,7 @@ java JDBCCalls 4 (without specifying the rollno.), it means that details of all 
 should be displayed.
 */
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
+import java.sql.*;
 
 public class JDBCCalls {
     public static void main(String[] args) throws ClassNotFoundException, SQLException {
@@ -53,7 +50,7 @@ public class JDBCCalls {
                 break;
             case 4:
                 //displaying a record
-                if(args[1].equals("null")) {
+                if(args.length==1) {
                     obj.displayAll(con);
                 } else {
                     obj.display(con, Integer.parseInt(args[1]));
@@ -96,13 +93,27 @@ class DAOClass {
 
     public void display(Connection con, int empid) throws SQLException {
         String d = "select * from employee where empid='" + empid + "'";
-        PreparedStatement ps = con.prepareStatement(d);
-        ps.executeQuery();
+        Statement stmt = con.prepareStatement(d);
+        ResultSet rs = stmt.executeQuery(d);
+        while(rs.next()) {
+            System.out.println(rs.getInt(1));
+            System.out.println(rs.getString(2));
+            System.out.println(rs.getString(3));
+            System.out.println(rs.getString(4));
+            System.out.println(rs.getInt(5));
+        }
     }
 
     public void displayAll(Connection con) throws SQLException {
         String e = "select * from employee";
-        PreparedStatement ps = con.prepareStatement(e);
-        ps.executeQuery();
+        Statement stmt2 = con.prepareStatement(e);
+        ResultSet rs = stmt2.executeQuery(e);
+        while(rs.next()) {
+            System.out.println(rs.getInt(1));
+            System.out.println(rs.getString(2));
+            System.out.println(rs.getString(3));
+            System.out.println(rs.getString(4));
+            System.out.println(rs.getInt(5));
+        }
     }
 }
