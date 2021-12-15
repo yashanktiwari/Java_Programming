@@ -1,0 +1,49 @@
+package ComparableComparator;
+
+import java.util.Comparator;
+import java.util.TreeSet;
+
+public class CompDemo1 {
+    public static void main(String[] args) {
+        TreeSet<Integer> obj = new TreeSet(new Mysort());
+        obj.add(10);
+        obj.add(23);
+        obj.add(6);
+        obj.add(4);
+        obj.add(4);
+        System.out.println(obj);
+
+    }
+}
+
+class Mysort implements Comparator {
+
+    @Override
+    public int compare(Object o1, Object o2) {
+        Integer i1 = (Integer) o1;
+        Integer i2 = (Integer) o2;
+        if(i1>i2) {
+            return -1;
+        } else if(i1<i2) {
+            return +1;
+        } else
+        return 0;
+    }
+
+//    @Override
+//    public int compare(Integer o1, Integer o2) {
+//        return 0;
+//    }
+}
+
+//class Mysort implements Comparator<Integer> {
+//
+//    @Override
+//    public int compare(Integer o1, Integer o2) {
+//        //return o1.compareTo(o2);
+//        //return -1;
+//        //return 0 for first element
+//    }
+//}
+
+// Collecions.sort(obj, new Sortbyname());
